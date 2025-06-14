@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaInstagram, FaFacebook, FaEnvelope } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaEnvelope, FaTiktok } from 'react-icons/fa';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -116,15 +116,15 @@ const Contact = () => {
             >
               <div>
                 <h3 className="font-display text-lg font-semibold mb-2">Business Email</h3>
-                <a href="mailto:hello@lumaestudio.com" className="text-accent hover:underline">
-                  hello@lumaestudio.com
+                <a href="mailto:studiolumaeco@gmail.com" className="text-accent hover:underline">
+                  studiolumaeco@gmail.com
                 </a>
               </div>
               <div>
                 <h3 className="font-display text-lg font-semibold mb-2">Social Media</h3>
                 <div className="flex space-x-4">
                   <a
-                    href="https://instagram.com/lumaestudio"
+                    href="https://instagram.com/studio_lumae_co?igsh=Mjh5cm02Zm1wbGRr&utm_source=qr"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-textPrimary hover:text-accent transition-colors"
@@ -133,16 +133,16 @@ const Contact = () => {
                     <FaInstagram className="w-6 h-6" />
                   </a>
                   <a
-                    href="https://facebook.com/lumaestudio"
+                    href="https://tiktok.com/@studio.lumae?_t=ZM-8xCletazHmf&_r=1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-textPrimary hover:text-accent transition-colors"
                     aria-label="Facebook"
                   >
-                    <FaFacebook className="w-6 h-6" />
+                    <FaTiktok className="w-6 h-6" />
                   </a>
                   <a
-                    href="mailto:hello@lumaestudio.com"
+                    href="mailto:studiolumaeco@gmail.com"
                     className="text-textPrimary hover:text-accent transition-colors"
                     aria-label="Email"
                   >
