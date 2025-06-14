@@ -174,8 +174,11 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="relative h-[400px] rounded-lg overflow-hidden"
             >
-              {/* Add team image here */}
-              <div className="absolute inset-0 bg-accent/20" />
+              <img 
+                src='/logo.jpg' 
+                alt="Studio Lumae Team"
+                className="absolute inset-0 w-full h-full object-contain"
+              />
             </motion.div>
           </div>
         </div>
