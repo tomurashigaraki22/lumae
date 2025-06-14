@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaInstagram, FaFacebook, FaEnvelope } from 'react-icons/fa';
+import { FaInstagram, FaEnvelope, FaTiktok } from 'react-icons/fa';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -13,9 +13,9 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { icon: FaInstagram, href: 'https://instagram.com/lumaestudio', label: 'Instagram' },
-    { icon: FaFacebook, href: 'https://facebook.com/lumaestudio', label: 'Facebook' },
-    { icon: FaEnvelope, href: 'mailto:hello@lumaestudio.com', label: 'Email' },
+    { icon: FaInstagram, href: 'https://instagram.com/studio_lumae_co?igsh=Mjh5cm02Zm1wbGRr&utm_source=qr', label: 'Instagram' },
+    { icon: FaTiktok, href: 'https://tiktok.com/@studio.lumae?_t=ZM-8xCletazHmf&_r=1', label: 'TikTok' },
+    { icon: FaEnvelope, href: 'mailto:studiolumaeco@gmail.com', label: 'Email' },
   ];
 
   return (

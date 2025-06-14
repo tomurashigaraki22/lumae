@@ -236,6 +236,7 @@ const About = () => {
               className="relative h-[400px] rounded-lg overflow-hidden bg-accent/20"
             >
               {/* Add map or location image here */}
+              <img src="/lagos.jpeg" className='relative h-[400px] rounded-lg overflow-hidden bg-accent/20 w-[700px]' style={{ objectFit: 'cover'}}/>
             </motion.div>
           </div>
         </div>

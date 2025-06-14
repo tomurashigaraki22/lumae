@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { FaInstagram, FaFacebook } from 'react-icons/fa';
+import { FaInstagram, FaFacebook, FaTiktok, FaEnvelope } from 'react-icons/fa';
 
 const navLinks = [
   { path: '/', label: 'Home' },
@@ -14,8 +14,9 @@ const navLinks = [
 ];
 
 const socialLinks = [
-  { icon: FaInstagram, href: 'https://instagram.com/lumaestudio', label: 'Instagram' },
-  { icon: FaFacebook, href: 'https://facebook.com/lumaestudio', label: 'Facebook' },
+  { icon: FaInstagram, href: 'https://instagram.com/studio_lumae_co?igsh=Mjh5cm02Zm1wbGRr&utm_source=qr', label: 'Instagram' },
+  { icon: FaTiktok, href: 'https://tiktok.com/@studio.lumae?_t=ZM-8xCletazHmf&_r=1', label: 'TikTok' },
+  { icon: FaEnvelope, href: 'mailto:studiolumaeco@gmail.com', label: 'Email' },
 ];
 
 const Navbar = () => {
