@@ -1,49 +1,53 @@
 import { motion } from 'framer-motion';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaPlay } from 'react-icons/fa';
+import { useState } from 'react';
 
 const projects = [
   {
-    title: 'Blossom Cosmetics',
-    type: 'Branding & Web',
-    image: '/portfolio/blossom.jpg', // Placeholder
-    description: 'A full brand identity and e-commerce website for a beauty brand.',
+    title: 'Bloomingtales',
+    type: 'Full Branding',
+    image: '/bloomingtales.jpg', // Placeholder
+    description: 'A full brand identity for a beauty and fashion brand.',
     link: '#',
   },
   {
     title: 'Urban Muse',
-    type: 'Content Creation',
-    image: '/portfolio/urbanmuse.jpg', // Placeholder
+    type: 'Fashion',
+    image: '/fashion.jpg', // Placeholder
     description: 'Social media content and campaign for a fashion label.',
     link: '#',
   },
   {
-    title: 'GlowUp App',
-    type: 'UI/UX & Strategy',
-    image: '/portfolio/glowup.jpg', // Placeholder
-    description: 'App UI/UX design and launch strategy for a wellness startup.',
-    link: '#',
-  },
-  {
     title: 'Luxe Events',
-    type: 'Web & Digital',
-    image: '/portfolio/luxe.jpg', // Placeholder
-    description: 'Website and digital assets for a luxury event planner.',
+    type: 'Digital',
+    image: '/event.jpg', // Placeholder
+    description: 'Digital assets for a luxury event planner.',
     link: '#',
   },
 ];
 
 const reels = [
   {
-    video: '/portfolio/reel1.mp4', // Placeholder
-    caption: 'Behind the scenes: Brand shoot for Blossom Cosmetics',
-  },
-  {
-    video: '/portfolio/reel2.mp4', // Placeholder
+    video: '/ugcshii.mp4',
+    thumbnail: 'https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1698201147/catalog/1716175120490258432/p8vrokulb6comadfn1ar.jpg', // Add thumbnail image
     caption: 'UGC campaign for Urban Muse',
-  },
+  }
 ];
 
 const Portfolio = () => {
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState('');
+
+  const handleVideoClick = (videoUrl) => {
+    setCurrentVideo(videoUrl);
+    setIsVideoModalOpen(true);
+  };
+
+  const closeVideoModal = () => {
+    setIsVideoModalOpen(false);
+    setCurrentVideo('');
+  };
+
   return (
     <div className="pt-24">
       {/* Hero Section */}
@@ -87,23 +91,31 @@ const Portfolio = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-secondary rounded-lg overflow-hidden shadow-lg flex flex-col"
+                className="bg-secondary rounded-lg overflow-hidden shadow-lg flex flex-col group"
               >
-                <div className="relative h-56 bg-accent/10">
-                  {/* Add project image here */}
+                <div className="relative h-80 bg-accent/10 overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
                 </div>
                 <div className="p-6 flex-1 flex flex-col">
                   <h3 className="heading-md mb-2">{project.title}</h3>
-                  <p className="text-accent mb-1 text-sm">{project.type}</p>
+                  <p className="text-accent mb-1 text-sm font-medium">{project.type}</p>
                   <p className="text-textSecondary mb-4 flex-1">{project.description}</p>
                   {project.link && (
                     <a
                       href={project.link}
-                      className="text-accent hover:underline text-sm font-medium mt-auto"
+                      className="text-accent hover:underline text-sm font-medium mt-auto inline-flex items-center"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       View Project
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
                     </a>
                   )}
                 </div>
@@ -139,13 +151,18 @@ const Portfolio = () => {
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="w-full md:w-1/2 bg-white rounded-lg shadow-lg overflow-hidden"
               >
-                <div className="relative h-64 bg-accent/10 flex items-center justify-center">
-                  {/* Add video here */}
-                  <video
-                    src={reel.video}
-                    controls
-                    className="w-full h-full object-cover"
+                <div 
+                  className="relative h-64 bg-accent/10 cursor-pointer group"
+                  onClick={() => handleVideoClick(reel.video)}
+                >
+                  <img 
+                    src={reel.thumbnail} 
+                    alt={reel.caption}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
+                    <FaPlay className="w-12 h-12 text-white transform group-hover:scale-110 transition-transform" />
+                  </div>
                 </div>
                 <div className="p-4">
                   <p className="text-textSecondary text-sm mb-2">{reel.caption}</p>
@@ -163,6 +180,32 @@ const Portfolio = () => {
           </div>
         </div>
       </section>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center"
+          onClick={closeVideoModal}
+        >
+          <div className="relative w-full h-full max-w-7xl mx-auto p-4">
+            <button
+              onClick={closeVideoModal}
+              className="absolute top-4 right-4 text-white hover:text-accent transition-colors z-10"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <video
+              src={currentVideo}
+              className="w-full h-full object-contain"
+              controls
+              autoPlay
+              playsInline
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

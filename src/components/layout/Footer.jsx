@@ -95,8 +95,8 @@ const Footer = () => {
             <h3 className="font-display text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-sm text-textSecondary">
               <li>
-                <a href="mailto:hello@lumaestudio.com" className="hover:text-accent transition-colors">
-                  hello@lumaestudio.com
+                <a href="mailto:studiolumaeco@gmail.com" className="hover:text-accent transition-colors">
+                  studiolumaeco@gmail.com
                 </a>
               </li>
               <li>Lagos, Nigeria</li>

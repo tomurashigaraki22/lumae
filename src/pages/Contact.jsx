@@ -4,7 +4,6 @@ import { FaInstagram, FaFacebook, FaEnvelope, FaTiktok } from 'react-icons/fa';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -12,8 +11,17 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would integrate with an email service or backend
-    setSubmitted(true);
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Contact from ${form.name}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
+    const mailtoLink = `mailto:studiolumaeco@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
+    
+    // Reset form
+    setForm({ name: '', email: '', message: '' });
   };
 
   return (
@@ -29,7 +37,7 @@ const Contact = () => {
           >
             <h1 className="heading-xl mb-6">Contact Us</h1>
             <p className="text-lg text-textSecondary">
-              Ready to start your project or have a question? Fill out the form below or reach out via email or social media.
+              Ready to start your project or have a question? Fill out the form below and we'll get back to you via email.
             </p>
           </motion.div>
         </div>
@@ -47,63 +55,56 @@ const Contact = () => {
               transition={{ duration: 0.5 }}
               className="bg-secondary p-8 rounded-lg shadow-lg"
             >
-              {submitted ? (
-                <div className="text-center">
-                  <h2 className="heading-md mb-4">Thank you!</h2>
-                  <p className="text-textSecondary">Your message has been sent. We'll get back to you soon.</p>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-textPrimary mb-1">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 rounded-md border border-primary/30 focus:border-accent focus:outline-none bg-white"
+                  />
                 </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-textPrimary mb-1">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 rounded-md border border-primary/30 focus:border-accent focus:outline-none bg-white"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-textPrimary mb-1">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 rounded-md border border-primary/30 focus:border-accent focus:outline-none bg-white"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-textPrimary mb-1">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className="w-full px-4 py-2 rounded-md border border-primary/30 focus:border-accent focus:outline-none bg-white"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn-primary w-full"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              )}
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-textPrimary mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-2 rounded-md border border-primary/30 focus:border-accent focus:outline-none bg-white"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-textPrimary mb-1">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-2 rounded-md border border-primary/30 focus:border-accent focus:outline-none bg-white"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="btn-primary w-full"
+                >
+                  Send Message
+                </button>
+              </form>
             </motion.div>
 
             {/* Contact Info */}
