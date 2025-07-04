@@ -10,7 +10,6 @@ const navLinks = [
   { path: '/services', label: 'Services' },
   { path: '/portfolio', label: 'Portfolio' },
   { path: '/contact', label: 'Contact' },
-  { path: '/blog', label: 'Blog' },
 ];
 
 const socialLinks = [
